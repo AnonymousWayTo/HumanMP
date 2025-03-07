@@ -3,9 +3,233 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My GitHub Page</title>
+    <title>HumanMP: Lifelike Dynamic 3D Human Sequence Generation</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            color: #333;
+            line-height: 1.8;
+        }
+        header {
+            background-color: #e8ecef;
+            padding: 30px 20px;
+            text-align: center;
+            border-bottom: 3px solid #ddd;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.8em;
+            color: #333;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+            font-weight: 700;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px 20px;
+        }
+        .section {
+            margin-bottom: 50px;
+            text-align: center;
+            background: #ffffff;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .section h2 {
+            font-size: 2.2em;
+            color: #333;
+            margin-bottom: 25px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .section h3 {
+            font-size: 1.5em;
+            color: #555;
+            margin-bottom: 15px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .section p {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: left;
+            color: #555;
+            font-size: 1.1em;
+        }
+        .section img {
+            max-width: 1000px;
+            width: 100%;
+            height: auto;
+            margin-top: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        hr {
+            border: 1px solid #ddd;
+            margin: 30px 0;
+            opacity: 0.5;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #e8ecef;
+            color: #333;
+            border-top: 2px solid #ddd;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            font-size: 0.9em;
+        }
+        .gif-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 25px;
+            padding: 10px;
+            background: #f9fbfd;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .gif-container img {
+            width: calc(14.2857% - 15px); /* 每行 7 个 */
+            height: auto;
+            object-fit: cover;
+            border-radius: 5px;
+            transition: transform 0.3s ease;
+        }
+        .gif-container img:hover {
+            transform: scale(1.05);
+        }
+        .gif-container-row-5 {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 25px;
+            padding: 10px;
+            background: #f9fbfd;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .gif-container-row-5 img {
+            width: calc(20% - 15px); /* 每行 5 个，100% / 5 = 20% */
+            height: auto;
+            object-fit: cover;
+            border-radius: 5px;
+            transition: transform 0.3s ease;
+        }
+        .gif-container-row-5 img:hover {
+            transform: scale(1.05);
+        }
+        .comparison-text {
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+        .experiment-image {
+            margin-bottom: 25px;
+        }
+        .dynamic-text {
+            margin-bottom: 25px;
+            font-size: 1.2em;
+        }
+        /* 响应式设计 */
+        @media (max-width: 1024px) {
+            .container, .section p, .section img, .gif-container, .gif-container-row-5 {
+                max-width: 100%;
+            }
+        }
+        @media (max-width: 768px) {
+            .section h2 {
+                font-size: 1.8em;
+            }
+            .section h3 {
+                font-size: 1.3em;
+            }
+            .gif-container img {
+                width: calc(33.33% - 15px); /* 每行 3 个 */
+            }
+            .gif-container-row-5 img {
+                width: calc(33.33% - 15px); /* 移动端每行 3 个 */
+            }
+            .container {
+                padding: 15px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to my GitHub Page!</h1>
+    <header>
+        <h1>HumanMP: Lifelike Dynamic 3D Human Sequence <br> Generation via Multi-Priors</h1>
+    </header>
+
+    <div class="container">
+        <div class="section">
+            <h2>Abstract</h2>
+            <p>High-quality dynamic 3D human sequences are essential for immersive applications in film, VR gaming, and remote conferencing. However, generating realistic 3D humans presents significant challenges due to complex spatial and temporal variations. To address these challenges, we propose HumanMP, a framework for text-driven dynamic 3D human sequence generation that ensures lifelike and consistent outputs. To achieve natural motion, we employ diffusion priors in the 2D domain to guide multi-view motion generation. To mitigate "Janus" artifacts caused by viewpoint inconsistencies, we incorporate SMPL-X to control multi-view motion generation and maintain pose consistency across views. Additionally, a texture enhancement strategy is applied to improve the visual quality of each frame. Experimental results demonstrate that HumanMP achieves superior efficiency and quality, with outputs that can be directly exported as explicit 3D representations, making it highly suitable for precise interactive applications.</p>
+        </div>
+
+        <hr>
+
+        <div class="section">
+            <h2>Overview</h2>
+            <img src="./image/Method_0.png" alt="HumanMP Method Overview">
+            <p>We propose HumanMP, a multi-prior framework for text-driven 3D human sequence generation, ensuring realistic, consistent results. It uses 2D diffusion priors for natural multi-view motion and SMPL-X to fix "Janus" artifacts and maintain pose consistency. HumanMP includes three modules: appearance generation, motion driving with SMPL-X constraints, and reconstruction with texture refinement, producing high-quality dynamic 3D human sequences with natural motion.</p>
+        </div>
+        
+        <hr>
+
+        <div class="section">
+            <h2>Results and Comparison</h2>
+            <h3 class="comparison-text">Comparison of dynamic sequences.</h3>
+            <img src="./image/experiment_1.png" alt="HumanMP Method" class="experiment-image">
+            <h3 class="dynamic-text">Dynamic sequences.</h3>
+            <div class="gif-container">
+                <!-- 第一行：7 个 GIF -->
+                <img src="./gif/blackman-lefthand.gif" alt="Blackman Lefthand">
+                <img src="./gif/girl-lefthand.gif" alt="Girl Lefthand">
+                <img src="./gif/ironman-lefthand.gif" alt="Ironman Lefthand">
+                <img src="./gif/man-lefthand.gif" alt="Man Lefthand">
+                <img src="./gif/oldwoman-lefthand.gif" alt="Oldwoman Lefthand">
+                <img src="./gif/tallgirl-lefthand.gif" alt="Tallgirl Lefthand">
+                <img src="./gif/WAC-lefthand.gif" alt="WAC Lefthand">
+                <!-- 第二行：7 个 GIF -->
+                <img src="./gif/blackman-wavehand.gif" alt="Blackman Wavehand">
+                <img src="./gif/girl-wavehand.gif" alt="Girl Wavehand">
+                <img src="./gif/ironman-wavehand.gif" alt="Ironman Wavehand">
+                <img src="./gif/man-wavehand.gif" alt="Man Wavehand">
+                <img src="./gif/oldwoman-wavehand.gif" alt="Oldwoman Wavehand">
+                <img src="./gif/tallgirl-wavehand.gif" alt="Tallgirl Wavehand">
+                <img src="./gif/WAC-wavehand.gif" alt="WAC Wavehand">
+            </div>
+            <h3 class="comparison-text">Different views.</h3>
+            <img src="./image/experiment_sup_4.png" alt="HumanMP Method">
+            <div class="gif-container-row-5">
+                <!-- 一行 5 个 GIF -->
+                <img src="./video/1.gif" alt="Sequence 1">
+                <img src="./video/2.gif" alt="Sequence 2">
+                <img src="./video/3.gif" alt="Sequence 3">
+                <img src="./video/4.gif" alt="Sequence 4">
+                <img src="./video/5.gif" alt="Sequence 5">
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025 HumanMP. All rights reserved.</p>
+    </footer>
 </body>
 </html>
